@@ -18,15 +18,9 @@ cd hlf-tunaSupplychain/client
 ```
 for making calls from client Side (From```client/``` directory),run:
 ```
-npm i fabric-ca-client
+chmod a+x prereqs.sh
 
-npm i fabric-network
-
-npm install
-
-node enrollAdmin.js
-
-node registerUser.js
+./prereqs.sh
 
 node query.js  // by default queries for All tunas on the ledger. You can simply modify function for other calls
 
