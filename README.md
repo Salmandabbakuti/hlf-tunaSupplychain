@@ -6,6 +6,17 @@ This Repository utilizes ```fabric-samples/basic-network```
 
 Tuna fishing 🎣 supplychain on nodejs for demonstration.
 
+#######Pre-requisites
+
+```
+curl -O https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh
+
+chmod u+x prereqs-ubuntu.sh
+
+./prereqs-ubuntu.sh
+
+```
+
 ###### Quick Demo:
 
 ```
