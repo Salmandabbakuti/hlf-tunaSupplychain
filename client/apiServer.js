@@ -98,6 +98,4 @@ app.put('/api/changeTunaOwner/:tuna_index', async function (req, res) {
         process.exit(1);
     } 
 })
-
-})
 app.listen(8080);
