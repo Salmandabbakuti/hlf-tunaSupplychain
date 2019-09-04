@@ -9,6 +9,11 @@ echo 'Changing Tuna owner..'
 
 curl -d '{"owner":"Kowshik"}' -H "Content-Type: application/json" -X PUT http://localhost:8080/api/changeTunaOwner/Tuna0
 
+echo 'Querying Tuna Again for Change status..'
+
+curl http://localhost:8080/api/queryTuna/Tuna0
+
+
 echo 'All Done.. bye..'
 
 exit 1
