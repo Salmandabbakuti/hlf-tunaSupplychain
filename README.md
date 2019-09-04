@@ -24,6 +24,6 @@ chmod a+x prereqs.sh
 
 node query.js  // by default queries for All tunas on the ledger. You can simply modify function for other calls
 
-node invoke.js. //Submits a transaction to change tuna owner
+node invoke.js//Submits a transaction to change tuna owner
 
 ```
