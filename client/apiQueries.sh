@@ -16,6 +16,12 @@ curl http://localhost:8080/api/queryTuna/Tuna0
 echo 'Adding Tuna into ledger..'
 curl -d '{"tunaId":"Tuna21","vessel":"437J2V","location":"78.34,23.5638","timestamp":"153478843757","owner":"Tom"}' -H "Content-Type: application/json" -X POST http://localhost:8080/api/addTuna
 
+echo 'Querying Added tuna..'
+
+curl http://localhost:8080/api/queryTuna/Tuna21
+
+
+
 echo 'All Done.. bye..'
 
 exit 1
