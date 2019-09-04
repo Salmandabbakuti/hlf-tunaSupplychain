@@ -18,5 +18,6 @@ echo 'Registering User..'
 node registerUser.js
 
 echo 'All Done..Start Querying or Invoking Calls with node *query.js* and *node invoke.js*'
-echo 'You can Also Use Api server for Querying or invoking Calls.. Run *node apiServer.js* and then *./apiQueries.sh*
+echo 'You can Also Use Api server for Querying or invoking Calls.. Run *node apiServer.js* and then *./apiQueries.sh*..'
+
 exit 1
