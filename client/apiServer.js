@@ -58,7 +58,7 @@ app.get('/api/queryTuna/:tuna_index', async function (req, res) {
 // Get the contract from the network.
         const contract = network.getContract('mycc');
 // Evaluate the specified transaction.
-        const result = await contract.evaluateTransaction('queryCar', req.params.tuna_index);
+        const result = await contract.evaluateTransaction('queryTuna', req.params.tuna_index);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         res.status(200).json({response: result.toString()});
 } catch (error) {
@@ -67,9 +67,6 @@ app.get('/api/queryTuna/:tuna_index', async function (req, res) {
         process.exit(1);
     }
 });
-app.post('/api/addTuna/', async function (req, res) {
- // to be filled in
-})
 app.put('/api/changeTunaOwner/:tuna_index', async function (req, res) {
  try {
 // Create a new file system based wallet for managing identities.
