@@ -8,6 +8,26 @@
 
 <h2>Query All tuna</h2>
 <div id=allTuna></div>
-<button type="button" onclick="main()">QueryAllTunas</button>
+<button type="button" id="getAllTuna">QueryAllTunas</button>
+<script>
+
+$(document).ready(function(){
+
+$(“#getAllTuna”).click(function(){
+
+$.post(“http://localhost:8080/api/queryAllTunas”, function(data){
+
+var parsedJson = $.parseJSON($.parseJSON(data));
+
+console.log(parsedJson);
+
+});
+
+});
+
+});
+
+</script>
+
 </body>
 </html>
