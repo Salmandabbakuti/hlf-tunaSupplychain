@@ -5,18 +5,18 @@
 </head>
 <body>
 <h2>Query Tuna</h2>
-<form action="/api/queryTuna" method="post">
+<form action="/api/queryTuna" method="get">
         Tuna Id: <input name="tunaId" type="text" /> <br />
         <input type="submit" />
     </form>
 <h2>Change Tuna Owner</h2>
-<form action="/api/changeTunaOwner" method="post">
+<form action="/api/changeTunaOwner" method="put">
         Tuna Id: <input name="tunaId" type="text" /> <br />
         New Owner: <input name="owner" type="text" /> <br />
         <input type="submit" />
     </form>
 <h2>Query All tuna</h2>
-<form action="/api/queryAllTuna" method="post">
+<form action="/api/queryAllTuna" method="get">
         <input type="submit" />
     </form>
 <h2>Add Tuna</h2>
