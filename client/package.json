@@ -1,7 +1,7 @@
 {
-    "name": "tuna Supplychain",
+    "name": "Tuna-Supplychain",
     "version": "1.0.0",
-    "description": "Tuna Supplychain application implemented in JavaScript",
+    "description": "Tuna Supplychain application implemented with Nodejs",
     "engines": {
         "node": ">=8",
         "npm": ">=5"
