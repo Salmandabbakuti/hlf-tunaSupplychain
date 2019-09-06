@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json());
-app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Setting for Hyperledger Fabric
 const { FileSystemWallet, Gateway } = require('fabric-network');
