@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <title>Tuna-supplychain</title>
 </head>
 <body>
 <h2>Query Tuna</h2>
-<form action="/api/queryTuna" method="get">
+<form action="/api/queryTuna" method="post">
         Tuna Id: <input name="tunaId" type="text" /> <br />
         <input type="submit" />
     </form>
 <h2>Change Tuna Owner</h2>
-<form action="/api/changeTunaOwner" method="put">
+<form action="/api/changeTunaOwner" method="post">
         Tuna Id: <input name="tunaId" type="text" /> <br />
         New Owner: <input name="owner" type="text" /> <br />
         <input type="submit" />
     </form>
 <h2>Query All tuna</h2>
-<form action="/api/queryAllTuna" method="get">
+<form action="/api/queryAllTuna" method="post">
         <input type="submit" />
     </form>
 <h2>Add Tuna</h2>
