@@ -8,8 +8,7 @@ const path = require('path');
 const ccpPath = path.resolve(__dirname,'..', 'basic-network', 'connection.json');
 
 app.get('/', function (req, res) {
-   res.sendFile(__dirname + '/app.html');
- 
+res.sendFile('app.html', { root: __dirname});
 });
 
 app.get('/api/queryallTunas', async function (req, res) {
