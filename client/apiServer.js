@@ -127,7 +127,7 @@ app.put('/api/changeTunaOwner/', async function (req, res) {
 // Get the contract from the network.
         const contract = network.getContract('mycc');
 // Submit the specified transaction.
-        await contract.submitTransaction('changeTunaOwner', req.body.tunaId req.body.owner);
+        await contract.submitTransaction('changeTunaOwner', req.body.tunaId, req.body.owner);
         console.log('Transaction has been submitted');
         res.send('Transaction has been submitted');
 // Disconnect from the gateway.
