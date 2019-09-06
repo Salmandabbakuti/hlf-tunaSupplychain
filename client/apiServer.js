@@ -106,7 +106,7 @@ app.post('/api/addTuna/', async function (req, res) {
 
 })
 
-app.put('/api/changeTunaOwner/:tuna_index', async function (req, res) {
+app.put('/api/changeTunaOwner/', async function (req, res) {
  try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
