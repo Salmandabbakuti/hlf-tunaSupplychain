@@ -65,7 +65,7 @@ app.get('/api/queryTuna/', async function (req, res) {
 // Get the contract from the network.
         const contract = network.getContract('mycc');
 // Evaluate the specified transaction.
-        const result = await contract.evaluateTransaction('queryTuna', req.body.tunaId);
+        const result = await contract.evaluateTransaction('queryTuna', req.query['tunaId']);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         res.status(200).json({response: result.toString()});
 } catch (error) {
