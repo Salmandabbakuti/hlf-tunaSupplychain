@@ -6,6 +6,11 @@ app.use(bodyParser.json());
 const { FileSystemWallet, Gateway } = require('fabric-network');
 const path = require('path');
 const ccpPath = path.resolve(__dirname,'..', 'basic-network', 'connection.json');
+
+app.get('/', function (req, res) {
+    res.sendFile('app.html');
+});
+
 app.get('/api/queryallTunas', async function (req, res) {
  try {
 // Create a new file system based wallet for managing identities.
@@ -37,7 +42,7 @@ app.get('/api/queryallTunas', async function (req, res) {
     }
 
 });
-app.get('/api/queryTuna/:tuna_index', async function (req, res) {
+app.get('/api/queryTuna/', async function (req, res) {
  try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
@@ -58,7 +63,7 @@ app.get('/api/queryTuna/:tuna_index', async function (req, res) {
 // Get the contract from the network.
         const contract = network.getContract('mycc');
 // Evaluate the specified transaction.
-        const result = await contract.evaluateTransaction('queryTuna', req.params.tuna_index);
+        const result = await contract.evaluateTransaction('queryTuna', req.body.tunaId);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         res.status(200).json({response: result.toString()});
 } catch (error) {
@@ -89,7 +94,7 @@ app.post('/api/addTuna/', async function (req, res) {
 // Get the contract from the network.
         const contract = network.getContract('mycc');
 // Submit the specified transaction.
-        await contract.submitTransaction('addTuna', req.body.tunaId, req.body.vessel, req.body.location, req.body.timestamp, req.body.owner);
+        await contract.submitTransaction('addTuna', req.body.addTunaId, req.body.vessel, req.body.location, req.body.timestamp, req.body.holder);
         console.log('Transaction has been submitted');
         res.send('Transaction has been submitted');
 // Disconnect from the gateway.
@@ -122,7 +127,7 @@ app.put('/api/changeTunaOwner/:tuna_index', async function (req, res) {
 // Get the contract from the network.
         const contract = network.getContract('mycc');
 // Submit the specified transaction.
-        await contract.submitTransaction('changeTunaOwner', req.params.tuna_index, req.body.owner);
+        await contract.submitTransaction('changeTunaOwner', req.body.tunaId req.body.owner);
         console.log('Transaction has been submitted');
         res.send('Transaction has been submitted');
 // Disconnect from the gateway.
