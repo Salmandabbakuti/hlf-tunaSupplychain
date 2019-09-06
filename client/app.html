@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tuna-supplychain</title>
+</head>
+<body>
+<h2>Query Tuna</h2>
+<form action="/api/queryTuna" method="get">
+        Tuna Id: <input name="tunaId" type="text" /> <br />
+        <input type="submit" />
+    </form>
+<h2>Change Tuna Owner</h2>
+<form action="/api/changeTunaOwner" method="post">
+        Tuna Id: <input name="tunaId" type="text" /> <br />
+        New Owner: <input name="owner" type="text" /> <br />
+        <input type="submit" />
+    </form>
+<h2>Query All tuna</h2>
+<form action="/api/queryAllTunas" method="get">
+        <input type="submit" />
+    </form>
+<h2>Add Tuna</h2>
+<form action="/api/addTuna" method="post">
+        Tuna Id: <input name="addTunaId" type="text" /> <br />
+        Vessel: <input name="vessel" type="text" /> <br />
+        Location: <input name="location" type="text" /> <br />
+        Timestamp: <input name="timestamp" type="text" /> <br />
+        Holder: <input name="holder" type="text" /> <br />
+       <input type="submit" />
+    </form>
+
+</body>
+</html>
