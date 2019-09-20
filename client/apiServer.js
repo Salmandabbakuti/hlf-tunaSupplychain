@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -14,7 +15,8 @@ res.sendFile('app.html', { root: __dirname});
 });
 
 app.get('/api/queryallTunas', async function (req, res) {
- try {
+ res.render('app');
+try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = new FileSystemWallet(walletPath);
@@ -45,7 +47,8 @@ app.get('/api/queryallTunas', async function (req, res) {
 
 });
 app.get('/api/queryTuna/', async function (req, res) {
- try {
+res.render('app');
+try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = new FileSystemWallet(walletPath);
@@ -76,7 +79,8 @@ app.get('/api/queryTuna/', async function (req, res) {
 });
 
 app.post('/api/addTuna/', async function (req, res) {
- try {
+ res.render('app');
+try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = new FileSystemWallet(walletPath);
@@ -109,7 +113,8 @@ app.post('/api/addTuna/', async function (req, res) {
 })
 
 app.post('/api/changeTunaOwner/', async function (req, res) {
- try {
+ res.render('app');
+try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = new FileSystemWallet(walletPath);
