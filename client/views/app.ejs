@@ -52,7 +52,7 @@ div {
        <input type="submit" />
     </form>
 </br>
-<p><%= response %></p>
+<p><%= (typeof response != "undefined" ? response : "") %></p>
 <div>
 </body>
 </html>
