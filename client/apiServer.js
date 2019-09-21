@@ -100,7 +100,7 @@ try {
 // Submit the specified transaction.
         await contract.submitTransaction('addTuna', req.body.addTunaId, req.body.vessel, req.body.location, req.body.timestamp, req.body.holder);
         console.log('Transaction has been submitted');
-        res.render('app',{response:'Transaction has been Submitted..'});
+        res.render('app',{response:'Tuna Added Successfully..'});
 // Disconnect from the gateway.
         await gateway.disconnect();
 } catch (error) {
@@ -133,7 +133,7 @@ try {
 // Submit the specified transaction.
         await contract.submitTransaction('changeTunaOwner', req.body.tunaId, req.body.owner);
         console.log('Transaction has been submitted');
-        res.render('app',{response:'Transaction has been Submitted..'});
+        res.render('app',{response:'Tuna Owner Changed Successfully..'});
 // Disconnect from the gateway.
         await gateway.disconnect();
 } catch (error) {
