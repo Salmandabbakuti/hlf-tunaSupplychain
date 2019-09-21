@@ -38,7 +38,6 @@ try {
 // Evaluate the specified transaction.
           const result = await contract.evaluateTransaction('queryAllTunas');
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        res.status(200).json({response: result.toString()});
         res.render('app',{response:result.toString()});
 } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
