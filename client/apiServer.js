@@ -15,7 +15,7 @@ res.sendFile('app.html', { root: __dirname});
 });
 
 app.get('/api/queryallTunas', async function (req, res) {
- res.render('app');
+ 
 try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
@@ -39,6 +39,7 @@ try {
           const result = await contract.evaluateTransaction('queryAllTunas');
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         res.status(200).json({response: result.toString()});
+        res.render('app',{response:result.toString());
 } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
         res.status(500).json({error: error});
