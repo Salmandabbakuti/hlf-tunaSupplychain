@@ -47,7 +47,6 @@ try {
 
 });
 app.get('/api/queryTuna/', async function (req, res) {
-res.render('app');
 try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
@@ -79,7 +78,6 @@ try {
 });
 
 app.post('/api/addTuna/', async function (req, res) {
- res.render('app');
 try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
@@ -113,7 +111,6 @@ try {
 })
 
 app.post('/api/changeTunaOwner/', async function (req, res) {
- res.render('app');
 try {
 // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
