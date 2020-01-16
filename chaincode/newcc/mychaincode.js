@@ -47,12 +47,12 @@ let Chaincode = class {
     const tunas = [
             {Vessel: "923F", Location: "67.0006, -70.5476", Timestamp: "1504054225", Holder: "Miriam"},
             {Vessel: "M83T", Location: "91.2395, -49.4594", Timestamp: "1504057825", Holder: "Dave"},
-	    {Vessel: "T012", Location: "58.0148, 59.01391", Timestamp: "1493517025", Holder: "Igor"},
+	    {Vessel: "923F", Location: "58.0148, 59.01391", Timestamp: "1493517025", Holder: "Igor"},
             {Vessel: "P490", Location: "-45.0945, 0.7949", Timestamp: "1496105425", Holder: "Amalea"},
 	    {Vessel: "S439", Location: "-107.6043, 19.5003", Timestamp: "1493512301", Holder: "Rafa"},
-	    {Vessel: "J205", Location: "-155.2304, -15.8723", Timestamp: "1494117101", Holder: "Shen"},
+	    {Vessel: "923F", Location: "-155.2304, -15.8723", Timestamp: "1494117101", Holder: "Miriam"},
 	    {Vessel: "S22L", Location: "103.8842, 22.1277", Timestamp: "1496104301", Holder: "Leila"},
-	    {Vessel: "EI89", Location: "-132.3207, -34.0983", Timestamp: "1485066691", Holder: "Yuan"},
+	    {Vessel: "EI89", Location: "-132.3207, -34.0983", Timestamp: "1485066691", Holder: "Miriam"},
 	    {Vessel: "129R", Location: "153.0054, 12.6429", Timestamp: "1485153091", Holder: "Carlo"},
 	    {Vessel: "49W4", Location: "51.9435, 8.2735", Timestamp: "1487745091", Holder: "Fatima"}
 	
@@ -116,6 +116,21 @@ let Chaincode = class {
       }
     }
   }
+async richQuery(stub, args, thisClass){
+        if (args.length < 2) {
+            throw new Error('Incorrect number of arguments. Expecting owner name.');
+        }
+
+        let queryValue = args[1];
+	let querytype = args[0];
+        let queryString = {};
+        queryString.selector = {};
+        queryString.selector.docType = 'passport';
+        queryString.selector.queryType = queryValue;
+        let method = thisClass['getQueryResultForQueryString'];
+        let queryResults = await method(stub, JSON.stringify(queryString), thisClass);
+        return queryResults; //shim.success(queryResults);
+    }
 
   async changeTunaOwner(stub, args) {
     console.info('============= START : changing Tuna Owner ===========');
