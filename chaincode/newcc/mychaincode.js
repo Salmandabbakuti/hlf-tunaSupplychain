@@ -126,7 +126,7 @@ async richQuery(stub, args, thisClass){
         let queryString = {};
         queryString.selector = {};
         queryString.selector[queryType] = queryValue;
-        let method = this['getQueryResultForQueryString'];
+        let method = thisClass['getQueryResultForQueryString'];
         let queryResults = await method(stub, JSON.stringify(queryString), thisClass);
         return queryResults; //shim.success(queryResults);
     }
