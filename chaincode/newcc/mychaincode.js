@@ -20,7 +20,7 @@ let Chaincode = class {
       throw new Error('Received unknown function ' + ret.fcn + ' invocation');
     }
     try {
-      let payload = await method(stub, ret.params);
+      let payload = await method(stub, ret.params, this);
       return shim.success(payload);
     } catch (err) {
       console.log(err);
@@ -47,12 +47,12 @@ let Chaincode = class {
     const tunas = [
             {Vessel: "923F", Location: "67.0006, -70.5476", Timestamp: "1504054225", Holder: "Miriam"},
             {Vessel: "M83T", Location: "91.2395, -49.4594", Timestamp: "1504057825", Holder: "Dave"},
-	    {Vessel: "T012", Location: "58.0148, 59.01391", Timestamp: "1493517025", Holder: "Igor"},
+	    {Vessel: "923F", Location: "58.0148, 59.01391", Timestamp: "1493517025", Holder: "Igor"},
             {Vessel: "P490", Location: "-45.0945, 0.7949", Timestamp: "1496105425", Holder: "Amalea"},
 	    {Vessel: "S439", Location: "-107.6043, 19.5003", Timestamp: "1493512301", Holder: "Rafa"},
-	    {Vessel: "J205", Location: "-155.2304, -15.8723", Timestamp: "1494117101", Holder: "Shen"},
+	    {Vessel: "923F", Location: "-155.2304, -15.8723", Timestamp: "1494117101", Holder: "Miriam"},
 	    {Vessel: "S22L", Location: "103.8842, 22.1277", Timestamp: "1496104301", Holder: "Leila"},
-	    {Vessel: "EI89", Location: "-132.3207, -34.0983", Timestamp: "1485066691", Holder: "Yuan"},
+	    {Vessel: "EI89", Location: "-132.3207, -34.0983", Timestamp: "1485066691", Holder: "Miriam"},
 	    {Vessel: "129R", Location: "153.0054, 12.6429", Timestamp: "1485153091", Holder: "Carlo"},
 	    {Vessel: "49W4", Location: "51.9435, 8.2735", Timestamp: "1487745091", Holder: "Fatima"}
 	
@@ -116,7 +116,70 @@ let Chaincode = class {
       }
     }
   }
+async richQuery(stub, args, thisClass){
+        if (args.length < 2) {
+            throw new Error('Incorrect number of arguments. Expecting owner name.');
+        }
 
+        let queryValue = args[1];
+	let queryType = args[0];
+        let queryString = {};
+        queryString.selector = {};
+        queryString.selector[queryType] = queryValue;
+        let method = thisClass['getQueryResultForQueryString'];
+	console.log(method);
+        let queryResults = await method(stub, JSON.stringify(queryString), thisClass);
+        return queryResults; //shim.success(queryResults);
+    }
+async getQueryResultForQueryString(stub, queryString, thisClass) {
+
+        console.info('- getQueryResultForQueryString queryString:\n' + queryString)
+        let resultsIterator = await stub.getQueryResult(queryString);
+        let method = thisClass['getAllResults'];
+    
+        let results = await method(resultsIterator, false);
+    
+        return Buffer.from(JSON.stringify(results));
+}
+	
+async getAllResults(iterator, isHistory) {
+        let allResults = [];
+        while (true) {
+          let res = await iterator.next();
+    
+          if (res.value && res.value.value.toString()) {
+            let jsonRes = {};
+            console.log(res.value.value.toString('utf8'));
+    
+            if (isHistory && isHistory === true) {
+              jsonRes.TxId = res.value.tx_id;
+              jsonRes.Timestamp = res.value.timestamp;
+              jsonRes.IsDelete = res.value.is_delete.toString();
+              try {
+                jsonRes.Value = JSON.parse(res.value.value.toString('utf8'));
+              } catch (err) {
+                console.log(err);
+                jsonRes.Value = res.value.value.toString('utf8');
+              }
+            } else {
+              jsonRes.Key = res.value.key;
+              try {
+                jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
+              } catch (err) {
+                console.log(err);
+                jsonRes.Record = res.value.value.toString('utf8');
+              }
+            }
+            allResults.push(jsonRes);
+          }
+          if (res.done) {
+            console.log('end of data');
+            await iterator.close();
+            console.info(allResults);
+            return allResults;
+          }
+        }
+    }
   async changeTunaOwner(stub, args) {
     console.info('============= START : changing Tuna Owner ===========');
     if (args.length != 2) {
