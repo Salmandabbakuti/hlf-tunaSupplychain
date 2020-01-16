@@ -122,7 +122,7 @@ async richQuery(stub, args, thisClass){
         }
 
         let queryValue = args[1];
-	let querytype = args[0];
+	let queryType = args[0];
         let queryString = {};
         queryString.selector = {};
         queryString.selector[queryType] = queryValue;
